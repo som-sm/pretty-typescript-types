@@ -6,15 +6,14 @@ export function activate(context: vscode.ExtensionContext) {
         async provideHover(document, position) {
             const prettifiedType = await getPrettifiedQuickInfo(document, position);
 
-            if (prettifiedType) {
-                const title = "```ts\n// Pretty Type:  \n```\n";
-
-                return new vscode.Hover(
-                    new vscode.MarkdownString(
-                        title + "```ts\n" + prettifiedType + "\n```",
-                    ),
-                );
+            if (!prettifiedType) {
+                return;
             }
+
+            const title = "```ts\n// Pretty Type:  \n```\n";
+            return new vscode.Hover(
+                new vscode.MarkdownString(title + "```ts\n" + prettifiedType + "\n```"),
+            );
         },
     });
 

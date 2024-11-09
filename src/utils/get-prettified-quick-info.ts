@@ -9,21 +9,23 @@ export async function getPrettifiedQuickInfo(
     position: vscode.Position,
 ): Promise<string | undefined> {
     const quickInfo = await getQuickInfo(document, position);
+    if (!quickInfo || !SUPPORTED_QUICKINFO_KINDS.includes(quickInfo.kind)) {
+        return;
+    }
 
-    if (quickInfo && SUPPORTED_QUICKINFO_KINDS.includes(quickInfo.kind)) {
-        const spilttedQuickInfo = splitQuickInfo(quickInfo.displayString, quickInfo.kind);
+    const spilttedQuickInfo = splitQuickInfo(quickInfo.displayString, quickInfo.kind);
+    if (!spilttedQuickInfo) {
+        return;
+    }
 
-        if (spilttedQuickInfo) {
-            const [prefix, type] = spilttedQuickInfo;
-            const prettifiedType = prettifyType(type);
+    const { prefix, type } = spilttedQuickInfo;
+    const prettifiedType = prettifyType(type);
+    if (!prettifiedType) {
+        return;
+    }
 
-            if (prettifiedType) {
-                const prettyDisplayString = `${prefix}${prettifiedType}`;
-
-                if (prettyDisplayString !== quickInfo.displayString) {
-                    return prettyDisplayString;
-                }
-            }
-        }
+    const prettifiedQuickInfo = `${prefix}${prettifiedType}`;
+    if (prettifiedQuickInfo !== quickInfo.displayString) {
+        return prettifiedQuickInfo;
     }
 }
