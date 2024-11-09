@@ -19,7 +19,7 @@ export async function getPrettyQuickInfo(
     }
 
     const { prefix, type } = quickInfoParts;
-    const prettyType = getPrettyType(type);
+    const prettyType = await getPrettyType(type, document);
     if (!prettyType) {
         return;
     }
