@@ -1,4 +1,4 @@
-export function splitQuickInfo(
+export function extractQuickInfoParts(
     quickInfo: string,
     quickInfoKind: string,
 ): { prefix: string; type: string } | undefined {

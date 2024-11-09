@@ -5,7 +5,7 @@ import {
     createDefaultMapFromNodeModules,
 } from "@typescript/vfs";
 
-export function prettifyType(type: string): string | undefined {
+export function getPrettyType(type: string): string | undefined {
     const code = `
     type Prettify<T> = T extends Function | string | number ? T: {[P in keyof T]: Prettify<T[P]>};
     type Result = Prettify<${type}>;
