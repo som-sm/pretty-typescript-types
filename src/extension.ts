@@ -3,10 +3,10 @@ import { getPrettyQuickInfo } from "./utils/get-pretty-quick-info";
 
 export function activate(context: vscode.ExtensionContext) {
     const disposable = vscode.languages.registerHoverProvider("typescript", {
-        async provideHover(document, position) {
+        async provideHover(document, position, token) {
             const prettyQuickInfo = await getPrettyQuickInfo(document, position);
 
-            if (!prettyQuickInfo) {
+            if (!prettyQuickInfo || token.isCancellationRequested) {
                 return;
             }
 
