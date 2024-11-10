@@ -9,6 +9,7 @@ export async function getPrettyType(type: string, document: vscode.TextDocument)
     const code =
         document.getText() +
         `
+export {};
 type ${randomId}_UglyType = ${type};
 type ${randomId}_Prettify<T> = T extends Function | string | number ? T: {[P in keyof T]: ${randomId}_Prettify<T[P]>};
 type ${randomId}_PrettyType = ${randomId}_Prettify<${randomId}_UglyType>;`;
