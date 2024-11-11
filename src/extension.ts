@@ -10,9 +10,10 @@ export function activate(context: vscode.ExtensionContext) {
                 return;
             }
 
-            const title = "```ts\n// Pretty Type:  \n```\n";
             return new vscode.Hover(
-                new vscode.MarkdownString(title + "```ts\n" + prettyQuickInfo + "\n```"),
+                new vscode.MarkdownString()
+                    .appendCodeblock("// Pretty Type:".padEnd(20), "typescript")
+                    .appendCodeblock(prettyQuickInfo, "typescript"),
             );
         },
     });
