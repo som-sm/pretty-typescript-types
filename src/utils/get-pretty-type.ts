@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-import * as fs from "fs";
+import * as fs from "node:fs/promises";
 import * as path from "path";
 import { getQuickInfo } from "./get-quick-info";
 import { extractQuickInfoParts } from "./extract-quick-info-parts";
@@ -23,7 +23,7 @@ export async function getPrettyType(type: string, document: vscode.TextDocument)
     );
 
     // Create a temporary file at the same location as the current file
-    fs.writeFileSync(tempFilePath, code);
+    await fs.writeFile(tempFilePath, code);
 
     const tempDocument = await vscode.workspace.openTextDocument(tempFilePath);
     const lineIndex = tempDocument.lineCount - 1;
@@ -37,7 +37,7 @@ export async function getPrettyType(type: string, document: vscode.TextDocument)
     );
 
     // Delete the temporary file after getting the quick info
-    fs.unlinkSync(tempFilePath);
+    await fs.unlink(tempFilePath);
 
     if (!quickInfo) {
         return;
