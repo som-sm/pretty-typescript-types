@@ -20,7 +20,24 @@ export const PRETTIFY_STRING = `type PrettifyIgnore =
     | ReadonlySet<any>
     | Promise<any>;
 
-export type Prettify<T> = T extends PrettifyIgnore
+type PrettifyConfig = { depth: number };
+
+type PrettifyDefaultConfig = { depth: 4 };
+
+type PrettifyHelper<
+    T,
+    Config extends PrettifyConfig,
+    Counter extends never[],
+> = T extends PrettifyIgnore
     ? T
-    : { [P in keyof T]: Prettify<T[P]> };
+    : Counter["length"] extends Config["depth"]
+      ? T
+      : {
+            [P in keyof T]: PrettifyHelper<T[P], Config, [...Counter, never]>;
+        };
+
+export type Prettify<
+    T,
+    Config extends PrettifyConfig = PrettifyDefaultConfig,
+> = PrettifyHelper<T, Config, []>;
 `;
