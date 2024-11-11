@@ -3,7 +3,7 @@ import * as fs from "fs";
 import * as path from "path";
 import { getQuickInfo } from "./get-quick-info";
 import { extractQuickInfoParts } from "./extract-quick-info-parts";
-import { PRETTIFY_STRING } from "../types/prettify-string";
+import { PRETTIFY_STRING } from "./constants";
 
 function getCodeForPrettifying(type: string, randomId: string) {
     return `${PRETTIFY_STRING.replace(/Prettify/g, `${randomId}_Prettify`)}
