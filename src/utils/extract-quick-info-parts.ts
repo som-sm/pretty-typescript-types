@@ -6,7 +6,7 @@ export function extractQuickInfoParts(
         `(?<prefix>\\(?${quickInfoKind}\\)?[^=:]+[:=]\\s+)(?<type>[\\s\\S]+)`,
     );
     const match = quickInfo.match(regex);
-    if (match?.groups) {
+    if (match?.groups?.prefix && match.groups.type) {
         return { prefix: match.groups.prefix, type: match.groups.type };
     }
 }
