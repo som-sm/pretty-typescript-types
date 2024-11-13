@@ -7,8 +7,8 @@
         "rootDir": "src",
         "strict": true /* enable all strict type-checking options */,
         /* Additional Checks */
-        "noUncheckedIndexedAccess": true /* Add 'undefined' to a type when accessed using an index. */
-        // "noImplicitReturns": true, /* Report error when not all code paths in function return a value. */
+        "noUncheckedIndexedAccess": true /* Add 'undefined' to a type when accessed using an index. */,
+        "noImplicitReturns": true /* Report error when not all code paths in function return a value. */
         // "noFallthroughCasesInSwitch": true, /* Report errors for fallthrough cases in switch statement. */
         // "noUnusedParameters": true,  /* Report errors on unused parameters. */
     }

@@ -25,7 +25,9 @@ export async function getPrettyQuickInfo(
     }
 
     const prettyQuickInfo = `${prefix}${prettyType}`;
-    if (prettyQuickInfo !== quickInfo.displayString) {
-        return prettyQuickInfo;
+    if (prettyQuickInfo === quickInfo.displayString) {
+        return;
     }
+
+    return prettyQuickInfo;
 }
