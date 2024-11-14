@@ -1,5 +1,6 @@
 import eslint from "@eslint/js";
 import tseslint from "typescript-eslint";
+import expectType from "eslint-plugin-expect-type/configs/recommended";
 import prettifyValidator from "./src/eslint/plugins/prettify-validator.mjs";
 
 export default tseslint.config(
@@ -24,4 +25,5 @@ export default tseslint.config(
             "prettify-validator/validate-prettify-string-value": "error",
         },
     },
+    expectType,
 );
