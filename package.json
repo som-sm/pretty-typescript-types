@@ -3,6 +3,7 @@
     "displayName": "Pretty TypeScript Types",
     "description": "Prettifies complex TypeScript types on hover, making them easy to read and interpret.",
     "version": "0.0.1",
+    "license": "MIT",
     "engines": {
         "vscode": "^1.95.0"
     },
