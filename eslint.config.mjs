@@ -1,36 +1,27 @@
-import typescriptEslint from "@typescript-eslint/eslint-plugin";
-import tsParser from "@typescript-eslint/parser";
-import prettifyValidator from "./src/eslint/plugins/prettify-validator.js";
+import eslint from "@eslint/js";
+import tseslint from "typescript-eslint";
+import prettifyValidator from "./src/eslint/plugins/prettify-validator.mjs";
 
-export default [
+export default tseslint.config(
     {
-        files: ["**/*.ts"],
+        ignores: ["**/dist/**"],
+    },
+    eslint.configs.recommended,
+    ...tseslint.configs.recommendedTypeChecked,
+    {
+        languageOptions: {
+            parserOptions: {
+                projectService: true,
+                tsconfigRootDir: import.meta.dirname,
+            },
+        },
     },
     {
         plugins: {
-            "@typescript-eslint": typescriptEslint,
             "prettify-validator": prettifyValidator,
         },
-
-        languageOptions: {
-            parser: tsParser,
-            ecmaVersion: 2022,
-            sourceType: "module",
-        },
-
         rules: {
-            "@typescript-eslint/naming-convention": [
-                "warn",
-                {
-                    selector: "import",
-                    format: ["camelCase", "PascalCase"],
-                },
-            ],
             "prettify-validator/validate-prettify-string-value": "error",
-            curly: "warn",
-            eqeqeq: "warn",
-            "no-throw-literal": "warn",
-            semi: "warn",
         },
     },
-];
+);

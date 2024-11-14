@@ -2,13 +2,13 @@ type PrettifyIgnore =
     | Date
     | RegExp
     | Error
-    | Map<any, any>
-    | Set<any>
-    | WeakMap<any, any>
-    | WeakSet<any>
-    | ReadonlyMap<any, any>
-    | ReadonlySet<any>
-    | Promise<any>;
+    | Map<unknown, unknown>
+    | Set<unknown>
+    | WeakMap<WeakKey, unknown>
+    | WeakSet<WeakKey>
+    | ReadonlyMap<unknown, unknown>
+    | ReadonlySet<unknown>
+    | Promise<unknown>;
 
 type PrettifyConfig = { depth: number };
 
