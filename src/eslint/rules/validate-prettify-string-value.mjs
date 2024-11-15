@@ -60,7 +60,7 @@ export default ESLintUtils.RuleCreator.withoutDocs({
                             error instanceof Error
                                 ? error.message
                                 : "Failed to validate PRETTIFY_STRING value";
-                        return context.report({
+                        context.report({
                             node,
                             messageId: "otherError",
                             data: { message },

@@ -20,7 +20,7 @@ const esbuildProblemMatcherPlugin = {
                 console.error(`✘ [ERROR] ${text}`);
                 if (location) {
                     console.error(
-                        `    ${location.file}:${location.line}:${location.column}:`,
+                        `    ${location.file}:${location.line.toString()}:${location.column.toString()}:`,
                     );
                 }
             });
@@ -54,7 +54,7 @@ async function main() {
     }
 }
 
-main().catch((e) => {
+main().catch((/** @type {unknown} */ e) => {
     console.error(e);
     process.exit(1);
 });
