@@ -9,6 +9,11 @@ export const SUPPORTED_QUICKINFO_KINDS = [
 ];
 
 export const PRETTIFY_STRING = `type PrettifyIgnore =
+    | string
+    | number
+    | boolean
+    | bigint
+    | symbol
     | Date
     | RegExp
     | Error
@@ -24,11 +29,9 @@ type PrettifyConfig = { depth: number };
 
 type PrettifyDefaultConfig = { depth: 4 };
 
-type PrettifyHelper<
+type PrettifyHelper<T, Config extends PrettifyConfig, Counter extends never[]> = [
     T,
-    Config extends PrettifyConfig,
-    Counter extends never[],
-> = T extends PrettifyIgnore
+] extends [PrettifyIgnore]
     ? T
     : Counter["length"] extends Config["depth"]
       ? T

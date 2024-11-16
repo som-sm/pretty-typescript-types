@@ -142,3 +142,45 @@ type T13 = Prettify<_T13>;
 //          i: ReadonlySet<1>;
 //          j: Promise<1>;
 //      }
+
+type T14 = Prettify<string & { a: 1 }>;
+//   ^? type T14 = string & {
+//          a: 1;
+//      }
+
+type T15 = Prettify<number & { a: 1 }>;
+//   ^? type T15 = number & {
+//          a: 1;
+//      }
+
+type T16 = Prettify<boolean & { a: 1 }>;
+//   ^? type T16 = boolean & {
+//          a: 1;
+//      }
+
+type T17 = Prettify<bigint & { a: 1 }>;
+//   ^? type T17 = bigint & {
+//          a: 1;
+//      }
+
+type T18 = Prettify<symbol & { a: 1 }>;
+//   ^? type T18 = symbol & {
+//          a: 1;
+//      }
+
+type T19 = Prettify<{ a: 1 } | ({ b: 2 } & { c: 3 })>;
+//   ^? type T19 = {
+//          a: 1;
+//      } | {
+//          b: 2;
+//          c: 3;
+//      }
+
+type T20 = Prettify<{ a: 1 } & ({ b: 2 } | { c: 3 })>;
+//   ^? type T20 = {
+//          a: 1;
+//          b: 2;
+//      } | {
+//          a: 1;
+//          c: 3;
+//      }
